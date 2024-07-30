@@ -38,11 +38,58 @@ community-site-analysis/
     pip install -r requirements.txt
     ```
 
-4. Run the tests:
-    ```sh
-    python -m unittest discover community_site_analysis/tests
+## Running the Analysis
+
+- **Cohort Analysis**: Analyze retention rates over time.
+    ```python
+    from community_site_analysis.scripts.cohort_analysis import cohort_analysis
+    import pandas as pd
+
+    data = {
+        'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        'Qty_blog_readers': [1500, 1200, 300, 2700, 1400],
+        'Buy_within_24_hrs': [150, 360, 15, 270, 25],
+        'Buy_within_1_week': [75, 120, 15, 54, 140],
+        'Buy_within_2_weeks': [75, 120, 15, 54, 70],
+        'Buy_within_3_weeks': [30, 60, 0, 54, 0],
+        'Click_through_no_buy': [225, 300, 75, 1080, 350],
+        'No_click': [945, 240, 180, 1188, 490]
+    }
+
+    df = pd.DataFrame(data)
+    cohort_analysis(df)
     ```
 
+- **Funnel Analysis**: Analyze user journey steps.
+    ```python
+    from community_site_analysis.scripts.funnel_analysis import funnel_analysis
+    import pandas as pd
+
+    data = {
+        'Month': ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+        'Qty_blog_readers': [1500, 1200, 300, 2700, 1400],
+        'Buy_within_24_hrs': [150, 360, 15, 270, 25],
+        'Buy_within_1_week': [75, 120, 15, 54, 140],
+        'Buy_within_2_weeks': [75, 120, 15, 54, 70],
+        'Buy_within_3_weeks': [30, 60, 0, 54, 0],
+        'Click_through_no_buy': [225, 300, 75, 1080, 350],
+        'No_click': [945, 240, 180, 1188, 490]
+    }
+
+    df = pd.DataFrame(data)
+    funnel_analysis(df)
+    ```
+
+- **Automated Execution**: You can also run both analyses using the provided script `run_analysis.py`.
+    ```sh
+    python community_site_analysis/run_analysis.py
+    ```
+
+## Running Tests
+
+To run the tests, use the following command:
+```sh
+python -m unittest discover community_site_analysis/tests
 ## Usage
 
 - **Cohort Analysis**: Analyze retention rates over time.
